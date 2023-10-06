@@ -1,0 +1,686 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API Ecommerce de Veiculos",
+      "description": "API construída como projeto full stack",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local Host"
+      }
+    ],
+    "paths": {
+      "/login": {
+        "post": {
+          "summary": "Logar Usuário",
+          "description": "Fazo login do usuário cadastrado",
+          "tags": ["Login"],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Login"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "email": "mail@mail.com",
+                      "password": "1234"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "403": {
+              "description": "Invalid credentials"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Login"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users": {
+        "post": {
+          "summary": "Criação de Usuário",
+          "description": "Criação de novo usuário",
+          "tags": ["User"],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "username": "Felipe Martins",
+                      "email": "mail@mail.com",
+                      "cpf": "12345678901",
+                      "phone": "41999999999",
+                      "description": "Exemplo",
+                      "password": "1234",
+                      "type_account": "seller",
+                      "address": {
+                        "state": "Fortaleza",
+                        "city": "Ceará",
+                        "street_name": "Rua 1",
+                        "street_number": "10",
+                        "zip_code": "87100000",
+                        "comp_address": "Loja 10"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "409": {
+              "description": "Conflict"
+            },
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "patch": {
+          "summary": "Atualização de Usuário",
+          "description": "Atualiza o usuário",
+          "tags": ["User"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User Id",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "name": "Lucas"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unautorized"
+            },
+            "404": {
+              "description": "Not Found"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Deletar Usuário",
+          "description": "Exclui o usuário",
+          "tags": ["User"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unautorized"
+            },
+            "404": {
+              "description": "Not Found"
+            },
+            "204": {
+              "description": "No Content"
+            }
+          }
+        }
+      },
+      "/announcements/{id}": {
+        "get": {
+          "summary": "Mostrar o anúncio por ID",
+          "description": "Esta rota mostrará o anúncio por ID",
+          "tags": ["Announcement"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Announcement"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "summary": "Atualiza um anúncio",
+          "description": "Esta rota atualizará um anúncio",
+          "tags": ["Announcement"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Announcement Id",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Announcement"
+                },
+                "examples": {
+                  "announcement": {
+                    "value": {
+                      "color": "Pink"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unautorized"
+            },
+            "404": {
+              "description": "Not Found"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Announcement"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir um anúncio",
+          "description": "Esta rota excluirá um anúncio",
+          "tags": ["Announcement"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Announcement Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unautorized"
+            },
+            "404": {
+              "description": "Not Found"
+            },
+            "204": {
+              "description": "No Content"
+            }
+          }
+        }
+      },
+      "/announcements": {
+        "post": {
+          "summary": "Crie um novo anúncio",
+          "description": "Esta rota criará um novo anúncio",
+          "tags": ["Announcement"],
+          "security": [{ "bearerAuth": [] }],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Announcement"
+                },
+                "examples": {
+                  "announcement": {
+                    "value": {
+                      "brand": "Hyundai",
+                      "model": "Creta",
+                      "fipe_price": 100000.0,
+                      "price": 90000.0,
+                      "year": 2021,
+                      "mileage": 5000,
+                      "description": "Automatatico",
+                      "color": "Preto",
+                      "fuel": "Flex",
+                      "images": {
+                        "cover_image_url": "www.cover.com",
+                        "first_img": "www.gallery1.com",
+                        "second_img": "www.gallery2.com"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "401": {
+              "description": "Unautorized"
+            },
+            "201": {
+              "description": "Created",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Announcement"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Listar todos os anúncios",
+          "description": "Esta rota listará todos os anúncios",
+          "tags": ["Announcement"],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Announcement"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/announcements/user/{id}":{
+        "get": {
+          "summary": "Listar todos os anúncios de um usuário",
+          "description": "Esta rota listará todos os anúncios de um usuário",
+          "tags": ["Announcement"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "User Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Announcement"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/comments/{id}": {
+        "post": {
+          "summary": "Crie um novo comentário",
+          "description": "Esta rota adicionará um novo comentário ao anúncio",
+          "tags": ["Comment"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Announcement Id",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                },
+                "examples": {
+                  "user": {
+                    "value": {
+                      "comment": "Tá bem novinho"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "404": {
+              "description": "Not Find"
+            },
+            "409": {
+              "description": "Conflict"
+            },
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Comment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Listar todos os comentários de um anúncio",
+          "description": "Esta rota listará todos os comentários de um anúncio",
+          "tags": ["Comment"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Announcement Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Comment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "summary": "Atualizar um comentário",
+          "description": "Esta rota atualizará um comentário",
+          "tags": ["Comment"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Comment Id",
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                },
+                "examples": {
+                  "announcement": {
+                    "value": {
+                      "comment": "Carro tá super novo"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unautorized"
+            },
+            "404": {
+              "description": "Not Found"
+            },
+            "200": {
+              "description": "OK",
+              "content": {
+                "appication/json": {
+                  "schema": {
+                    "type": "object",
+                    "$ref": "#/components/schemas/Comment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir um comentário",
+          "description": "Esta rota excluirá um comentário de um anúncio",
+          "tags": ["Comment"],
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "Comment Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Bad Request"
+            },
+            "401": {
+              "description": "Unautorized"
+            },
+            "404": {
+              "description": "Not Found"
+            },
+            "204": {
+              "description": "No Content"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Comment": {
+          "type": "object",
+          "properties": {
+            "comment": {
+              "type": "string"
+            }
+          }
+        },
+        "Login": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "type_account": {
+              "type": "string"
+            },
+            "address": {
+              "state": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "street_name": {
+                "type": "string"
+              },
+              "street_number": {
+                "type": "string"
+              },
+              "zip_code": {
+                "type": "string"
+              },
+              "comp_address": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Announcement": {
+          "type": "object",
+          "properties": {
+            "brand": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "fipe_price": {
+              "type": "number"
+            },
+            "price": {
+              "type": "number"
+            },
+            "year": {
+              "type": "number"
+            },
+            "mileage": {
+              "type": "number"
+            },
+            "description": {
+              "type": "string"
+            },
+            "color": {
+              "type": "string"
+            },
+            "fuel": {
+              "type": "number"
+            },
+            "images": {
+              "cover_img": {
+                "type": "string"
+              },
+              "first_img": {
+                "type": "string"
+              },
+              "second_img": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }

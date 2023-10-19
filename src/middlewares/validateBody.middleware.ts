@@ -1,9 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodTypeAny } from "zod";
 
-export const validateBody =
+const validateBody =
   (schema: ZodTypeAny) =>
-  (req: Request, res: Response, next: NextFunction): void => {
-    req.body = schema.parse(req.body);
+  (request: Request, response: Response, next: NextFunction): void => {
+    request.body = schema.parse(request.body);
     return next();
   };
+
+export default validateBody;

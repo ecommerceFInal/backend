@@ -2,14 +2,20 @@ import { z } from "zod";
 
 const addressSchema = z.object({
   id: z.string(),
-  zip_code: z.string().max(8),
-  state: z.string().max(30),
-  city: z.string().max(30),
-  street_name: z.string().max(70),
-  street_number: z.number(),
-  comp_address: z.string().max(70),
+  post_code: z.string().max(25).nonempty(),
+  state: z.string().max(25).nonempty(),
+  city: z.string().max(25).nonempty(),
+  street_name: z.string().max(80).nonempty(),
+  street_number: z.string().max(25).nonempty(),
+  address_complement: z.string().nullish().optional(),
 });
 
-const addressCreateSchemas = addressSchema.omit({ id: true });
+const addressSchemaRequest = addressSchema.omit({
+  id: true,
+});
 
-export { addressSchema, addressCreateSchemas };
+const addressSchemaResponse = addressSchema;
+
+const addressSchemaUpdate = addressSchemaRequest.partial();
+
+export { addressSchema, addressSchemaRequest, addressSchemaResponse, addressSchemaUpdate };

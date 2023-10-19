@@ -1,23 +1,25 @@
 import { Request, Response } from "express";
-import { UserReturn } from "../interfaces";
-import { userServices } from "../services";
+import { createNewUserService, destroyUserService, updateUserService } from "../services/users/";
+import { TUserResponse, Tuser } from "../interfaces";
 
-const create = async (req: Request, res: Response): Promise<Response> => {
-  const user: UserReturn = await userServices.create(req.body);
-  return res.status(201).json(user);
+const createNewUser = async (request: Request, response: Response): Promise<Response> => {
+  const user: TUserResponse = await createNewUserService(request.body);
+
+  return response.status(201).json(user);
 };
 
-const update = async (req: Request, res: Response): Promise<Response> => {
-  const user: UserReturn = await userServices.update(
-    res.locals.foundId,
-    req.body
-  );
-  return res.status(200).json(user);
+const updateUser = async (request: Request, response: Response): Promise<Response> => {
+  const foundUser: Tuser = response.locals.user;
+
+  const user: TUserResponse = await updateUserService(foundUser, request.body);
+
+  return response.status(200).json(user);
 };
 
-const destroy = async (req: Request, res: Response): Promise<Response> => {
-  await userServices.destroy(res.locals.foundId);
-  return res.status(204).json();
+const destroyUser = async (request: Request, response: Response): Promise<Response> => {
+  await destroyUserService(response.locals.user);
+
+  return response.status(204).json();
 };
 
-export default { create, update, destroy };
+export default { createNewUser, updateUser, destroyUser };

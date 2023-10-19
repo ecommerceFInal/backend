@@ -1,61 +1,51 @@
 import {
   userSchema,
-  userCreateSchema,
-  userReturnSchema,
-  userReadSchema,
-  userUpdateSchema,
+  userSchemaResponse,
+  userSchemaRequest,
+  userSchemaUpdate,
 } from "./user.schemas";
-
-import { sessionSchemas } from "./session.schemas";
-
-import { addressSchema, addressCreateSchemas } from "./address.schemas";
-
 import {
-  imageSchema,
-  imageCreateSchema,
-  imageReadSchema,
-} from "./images,schemas";
-
+  addressSchema,
+  addressSchemaRequest,
+  addressSchemaResponse,
+  addressSchemaUpdate,
+} from "./address.schemas";
 import {
-  anouncementsSchema,
-  anouncementsCreateSchema,
-  anouncementsReadSchema,
-  announcementsUpdateSchema,
-  announcemetsReturnSchema,
-} from "./anouncements.schema";
-
+  announcementSchema,
+  announcementSchemaResponse,
+  announcementSchemaRequest,
+  announcementSchemaUpdate,
+  announcementsSchemaResponse,
+} from "./announcement.schemas";
+import { imageSchemaRequest, imagesSchemaResponse, imageSchema } from "./image.schemas";
 import {
-  commentsSchema,
-  commentsCreateSchema,
-  commentsReadSchema,
-  commentsReturnSchema,
-} from "./comments.schemas";
+  commentSchema,
+  commentSchemaResponse,
+  commentSchemaRequest,
+  commentsSchemaResponse,
+} from "./comment.schemas";
+import { loginSchema } from "./login.schemas";
 
 export {
   userSchema,
-  userCreateSchema,
-  userReturnSchema,
-  userReadSchema,
-  userUpdateSchema,
-};
-
-export { sessionSchemas };
-
-export { addressSchema, addressCreateSchemas };
-
-export {
-  anouncementsSchema,
-  anouncementsCreateSchema,
-  anouncementsReadSchema,
-  announcementsUpdateSchema,
-  announcemetsReturnSchema,
-};
-
-export { imageSchema, imageCreateSchema, imageReadSchema };
-
-export {
-  commentsSchema,
-  commentsCreateSchema,
-  commentsReadSchema,
-  commentsReturnSchema,
+  userSchemaResponse,
+  userSchemaRequest,
+  userSchemaUpdate,
+  addressSchema,
+  addressSchemaRequest,
+  addressSchemaResponse,
+  addressSchemaUpdate,
+  announcementSchema,
+  announcementSchemaResponse,
+  announcementSchemaRequest,
+  announcementSchemaUpdate,
+  announcementsSchemaResponse,
+  imageSchemaRequest,
+  imagesSchemaResponse,
+  imageSchema,
+  commentSchema,
+  commentSchemaResponse,
+  commentSchemaRequest,
+  commentsSchemaResponse,
+  loginSchema,
 };

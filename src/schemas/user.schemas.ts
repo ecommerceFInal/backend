@@ -1,31 +1,47 @@
 import { z } from "zod";
-import { TypeAccount } from "../entities/Users.entity";
-import { addressCreateSchemas } from "./address.schemas";
+import {
+  addressSchemaRequest,
+  addressSchemaResponse,
+  addressSchemaUpdate,
+} from "./address.schemas";
 
 const userSchema = z.object({
   id: z.string(),
-  username: z.string().max(50),
-  email: z.string().email(),
-  cpf: z.string().max(11),
-  phone: z.string().max(11),
-  description: z.string(),
-  type_account: z.nativeEnum(TypeAccount),
-  address: addressCreateSchemas,
-  password: z.string().max(120),
+  name: z.string().max(150).nonempty(),
+  email: z.string().max(100).email().nonempty(),
+  cpf: z.string().max(11).nonempty(),
+  phone_number: z.string().max(150).nonempty(),
+  dob: z.string().max(10).nonempty(),
+  description: z.string().nullish(),
+  type_of_account: z.string().nonempty(),
+  password: z.string().max(128).nonempty(),
 });
 
-const userCreateSchema = userSchema.omit({ id: true });
+const userSchemaRequest = userSchema
+  .extend({
+    address: addressSchemaRequest,
+  })
+  .omit({
+    id: true,
+  });
 
-const userReturnSchema = userSchema.omit({ password: true });
+const userSchemaResponse = userSchema
+  .extend({
+    address: addressSchemaResponse,
+  })
+  .omit({
+    password: true,
+  });
 
-const userReadSchema = userReturnSchema.array();
+const userSchemaUpdate = userSchema
+  .extend({
+    address: addressSchemaUpdate,
+  })
+  .omit({
+    id: true,
+  })
+  .partial();
 
-const userUpdateSchema = userCreateSchema.partial();
+// const usersSchemaResponse = z.array(userSchemaResponse);
 
-export {
-  userSchema,
-  userCreateSchema,
-  userReturnSchema,
-  userReadSchema,
-  userUpdateSchema,
-};
+export { userSchema, userSchemaResponse, userSchemaRequest, userSchemaUpdate };

@@ -1,43 +1,40 @@
+import { TUserRequest, TUserResponse, TUserUpdate, IToken, Tuser } from "./user.interfaces";
 import {
-  UserCreate,
-  UserRead,
-  UserReturn,
-  UserUpdate,
-  UserRepo,
-} from "./user.interface";
-
-import { SessionCreate, SessionReturn } from "./session.interface";
-
+  Tannouncement,
+  TannouncementRequest,
+  TannouncementResponse,
+  TannouncementsResponse,
+  TannouncementUpdateRequest,
+} from "./announcement.interfaces";
+import { TImage, TImageRequest, TImageResponse, TImages } from "./image.interfaces";
 import {
-  AnouncementsCreate,
-  AnouncementsRead,
-  AnouncementsRepo,
-  AnnouncementRead,
-  AnouncementUpdate,
-} from "./anouncements.interface";
-
-import {
-  Comments,
-  CommentsCreate,
-  CommentsRead,
-  CommentsUpdate,
-} from "./comments.interface";
+  Tcomment,
+  TcommentsResponse,
+  TcommentRequest,
+  TcommentResponse,
+  TcommentUpdate,
+} from "./comment.interfaces";
+import { TLoginRequest } from "./login.interfaces";
 
 export {
-  UserCreate,
-  UserRead,
-  UserReturn,
-  UserUpdate,
-  UserRepo,
-  SessionCreate,
-  SessionReturn,
-  AnouncementsCreate,
-  AnouncementsRead,
-  AnouncementsRepo,
-  AnnouncementRead,
-  AnouncementUpdate,
-  Comments,
-  CommentsCreate,
-  CommentsRead,
-  CommentsUpdate,
+  TUserRequest,
+  TUserResponse,
+  TUserUpdate,
+  IToken,
+  Tuser,
+  Tannouncement,
+  TannouncementRequest,
+  TannouncementResponse,
+  TannouncementsResponse,
+  TannouncementUpdateRequest,
+  Tcomment,
+  TcommentsResponse,
+  TcommentRequest,
+  TcommentResponse,
+  TcommentUpdate,
+  TImage,
+  TImageRequest,
+  TImageResponse,
+  TImages,
+  TLoginRequest,
 };

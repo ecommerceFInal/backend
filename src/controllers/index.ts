@@ -1,11 +1,5 @@
 import userControllers from "./user.controllers";
-import sessionControllers from "./session.controllers";
-import anouncementsControllers from "./anouncements.controllers";
-import commentsControllers from "./comments.controllers";
+import loginUserController from "./login.controllers";
+import announcementControllers from "./announcement.controllers";
 
-export {
-  userControllers,
-  sessionControllers,
-  anouncementsControllers,
-  commentsControllers,
-};
+export { userControllers, loginUserController, announcementControllers };

@@ -1,3 +1,3 @@
-import { AppError } from "./app.error";
+import { AppError } from "./App.error";
 
 export { AppError };

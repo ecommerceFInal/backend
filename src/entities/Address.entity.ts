@@ -5,32 +5,32 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { User } from "./Users.entity";
+import { User } from "./User.entity";
 
-@Entity("address")
+@Entity("Addresses")
 export class Address {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column({ length: 8 })
-  zip_code: string;
+  post_code: string;
 
-  @Column({ length: 30 })
+  @Column({ length: 25 })
   state: string;
 
-  @Column({ length: 30 })
+  @Column({ length: 25 })
   city: string;
 
-  @Column({ length: 70 })
+  @Column({ length: 80 })
   street_name: string;
 
-  @Column({ type: "smallint" })
-  street_number: number;
+  @Column({ length: 5 })
+  street_number: string;
 
-  @Column({ length: 70 })
-  comp_address: string;
+  @Column({ type: "varchar", length: 50, nullable: true })
+  address_complement?: string | undefined | null;
 
-  @OneToOne(() => User, (user) => user.address, { onDelete: "CASCADE" })
+  @OneToOne(() => User, (u) => u.address, { onDelete: "CASCADE" })
   @JoinColumn()
   user: User;
 }

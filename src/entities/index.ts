@@ -1,6 +1,7 @@
-import { User } from "./Users.entity";
+import { User } from "./User.entity";
 import { Address } from "./Address.entity";
-import { Anouncement } from "./Anouncements.entity";
-import { Comment } from "./Comments.entity";
+import { Announcement } from "./Announcement.entity";
+import { Comment } from "./Comment.entity";
+import { Image } from "./Image.entity";
 
-export { User, Comment, Anouncement, Address };
+export { User, Address, Announcement, Comment, Image };

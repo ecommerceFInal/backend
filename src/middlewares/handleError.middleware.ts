@@ -2,21 +2,22 @@ import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors";
 import { ZodError } from "zod";
 
-export const handleError = (
+const handleError = (
   error: unknown,
-  req: Request,
-  res: Response,
+  request: Request,
+  response: Response,
   next: NextFunction
 ): Response => {
   if (error instanceof AppError) {
-    return res.status(error.status).json({ message: error.message });
+    return response.status(error.status).json({ message: error.message });
   }
 
   if (error instanceof ZodError) {
-    // console.error(error.flatten().fieldErrors);
-    return res.status(400).json({ message: error.flatten().fieldErrors });
+    return response.status(400).json({ message: error.flatten().fieldErrors });
   }
 
   console.error(error);
-  return res.status(500).json({ message: "Internal server error" });
+  return response.status(500).json({ message: "Internal server error" });
 };
+
+export default handleError;

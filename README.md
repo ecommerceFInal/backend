@@ -1,10 +1,10 @@
-# API construída como projeto full stack
+# API construída como projeto full stack para gestão de um site de venda de veículos
 
 Documentação
 
 # Rota para documentação:
 
-A documentação encontra-se mp endpoint: /doc
+A documentação encontra-se mp endpoint: /documentation
 
 Configuração - Siga os passos abaixo para configurar o ambiente de desenvolvimento e começar a usar a API:
 
@@ -30,6 +30,8 @@ Para inciar este projeto, é necessário instalar as dependências requeridas. P
 - caso use npm
   npm run i
 
+- caso use yarn
+  yarn
 
 # Conectar ao banco de dados
 
@@ -45,9 +47,15 @@ SECRET_KEY=<secret_key>
 - caso use npm
   npm run typeorm migration:run -d src/data-source.ts
 
+- caso use yarn
+  yarn typeorm migration:run -d src/data-source.ts
+
 # Iniciar o servidor
 
 Feita a conexão com o banco de dados, inicie o servidor utilizando o comando abaixo.
 
 - caso use npm
   npm run dev
+
+- caso use yarn
+  yarn dev

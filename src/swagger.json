@@ -9,10 +9,6 @@
     {
       "url": "http://localhost:3000",
       "description": "Local Host"
-    },
-    {
-      "url": "https://api-full-stack-vini-garcia.onrender.com/",
-      "description": "API online"
     }
   ],
   "paths": {
@@ -61,8 +57,8 @@
     },
     "/users": {
       "post": {
-        "summary": "Criação de Usuário",
-        "description": "Criação de novo usuário",
+        "summary": "Create User",
+        "description": "This route will create a new user",
         "tags": ["User"],
         "requestBody": {
           "content": {
@@ -76,13 +72,14 @@
                     "name": "João da Silva",
                     "email": "mail@mail.com",
                     "cpf": "12345678901",
-                    "phone_number": "85999999999",
+                    "phone_number": "41999999999",
+                    "dob": "010120",
                     "description": "Primeiro vendedor de carro do Brasil",
                     "password": "1234",
-                    " type_of_account": "seller",
+                    "type_of_account": "seller",
                     "address": {
-                      "state": "Fortaleza",
-                      "city": "Ceará",
+                      "state": "Paraná",
+                      "city": "Curitiba",
                       "street_name": "Rua 1",
                       "street_number": "10",
                       "post_code": "87100000",
